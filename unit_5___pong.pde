@@ -26,11 +26,10 @@ boolean wKey, sKey, upKey, downKey, spaceBar;
 boolean gameOver = false;
 boolean paused = false;
 
-int p1score, p2score, cpuScore;
+int p1score, p2score, cpuScore, timer;
 
 void setup () {
   size (800, 800, P2D);
-  background (white);
   
   playerX1 = 0;
   playerY1 = 400;
@@ -48,9 +47,8 @@ void setup () {
   pongY = 400;
   pongD = 100;
   
-  p1score = 0;
-  p2score = 0;
-  cpuScore = 0;
+  p1score = p2score = cpuScore = 0;
+  timer = 100;
   
   pongSpeedX = -5;
   pongSpeedY = 0;

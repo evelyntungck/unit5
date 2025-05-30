@@ -4,6 +4,7 @@ final int INTRO = 0;
 final int GAME = 1;
 final int PAUSE = 2;
 final int GAMEOVER = 3;
+final int WIN = 4;
 
 color white = #ffffff;
 color black = #000000;
@@ -19,13 +20,19 @@ color peach = #f4978e;
 color indigo = #5390d9;
 color mint = #b8f2e6;
 
-float playerX, playerY, playerD, ballX, ballY, ballD, score, lives;
+float brickX, brickY, brickD, playerX, playerY, playerD, ballX, ballY, ballD, score, lives;
 float ballSpeedX, ballSpeedY;
 
 boolean leftKey, rightKey;
+boolean isPaused = false;
 
 int[] x;
 int[] y;
+boolean [] alive;
+int n;
+int tempX, tempY;
+int i = 0;
+int timer;
 
 void setup () {
   size (800, 800, P2D);
@@ -39,25 +46,37 @@ void setup () {
   ballD = 25;
   
   score = 0;
-  lives = 3;
+  lives = 5;
   
-  ballSpeedX = 5;
+  ballSpeedX = 0;
   ballSpeedY = 5;
+  
+  timer = 100;
   
   mode = INTRO;
   
   //array of bricks
-  x = new int[3];
-  y = new int[3];
+  brickD = 75;
+  n = 35;
+  x = new int [n];
+  y = new int [n];
+  alive = new boolean[n];
+  tempX = 100;
+  tempY = 100;
   
-  x[0] = 100;
-  y[0] = 100;
-  
-  x[1] = 400;
-  y[1] = 100;
-  
-  x[2] = 700;
-  y[2] = 100;
+  int i = 0;
+  while (i < n) {
+    x[i] = tempX;
+    y[i] = tempY;
+    alive [i] = true;
+    tempX = tempX + 100;
+    if (tempX == width) {
+      tempX = 100;
+      tempY = tempY + 100;
+    }
+   i++;
+  }
+  gameClicks ();
 }
 
 void draw () {
@@ -69,5 +88,7 @@ void draw () {
     pause ();
   } else if (mode == GAMEOVER) {
     gameover ();
+  } else if (mode == WIN) {
+    win ();
   }
-}
+  }
