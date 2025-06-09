@@ -24,7 +24,6 @@ float brickX, brickY, brickD, playerX, playerY, playerD, ballX, ballY, ballD, sc
 float ballSpeedX, ballSpeedY;
 
 boolean leftKey, rightKey;
-boolean isPaused = false;
 
 int[] x;
 int[] y;

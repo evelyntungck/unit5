@@ -23,10 +23,7 @@ float y, pongSpeedX, pongSpeedY;
 
 boolean wKey, sKey, upKey, downKey, spaceBar;
 
-boolean gameOver = false;
-boolean paused = false;
-
-int p1score, p2score, cpuScore, timer;
+int p1score, p2score, timer;
 
 void setup () {
   size (800, 800, P2D);
@@ -47,7 +44,7 @@ void setup () {
   pongY = 400;
   pongD = 100;
   
-  p1score = p2score = cpuScore = 0;
+  p1score = p2score = 0;
   timer = 100;
   
   pongSpeedX = -5;
@@ -68,5 +65,7 @@ void draw () {
     player2 ();
   } else if (mode == PAUSE) {
     pause ();
+  } else if (mode == GAMEOVER) {
+    gameover ();
   }
 }
